@@ -1,0 +1,42 @@
+# Workflow name 
+name: Django CICD Workflow Runners
+
+# Workflow Triggers 
+on: 
+  pull_request: 
+    branches: 
+      - main 
+      - develop
+
+  push: 
+    branches: 
+      - main
+      - develop
+
+# jobs to execute 
+jobs: 
+  health-check-job: 
+    runs-on: ubuntu-latest
+
+    steps: 
+      - name: Checkout Code 
+        uses: actions/checkout@v2 
+    
+      - name: Cache Dependency 
+        uses: action/cache@v2
+        with: 
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Setting up Python environment 
+        uses: action/setup-python@v2
+        with: 
+            python-version: '3.x'
+
+      - name: Checking python version
+        run: python --version
+        
+      - name: Running Test
+        run: python manage.py test
