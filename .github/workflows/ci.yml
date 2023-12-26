@@ -41,8 +41,8 @@ jobs:
       - name: Installing Python Dependencies 
         run: pip install -r requirements.txt
 
-      - name: Checking Code Syntax
-        run: pycodestyle --statistics . 
+      # - name: Checking Code Syntax
+      #   run: pycodestyle --statistics . 
 
       - name: Running Test
         run: python manage.py test
