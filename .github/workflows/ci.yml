@@ -38,5 +38,11 @@ jobs:
       - name: Checking python version
         run: python --version
 
+      - name: Installing Python Dependencies 
+        run: pip install -r requirements.txt
+
+      - name: Checking Code Syntax
+        run: pycodestyle --statistics . 
+
       - name: Running Test
         run: python manage.py test
