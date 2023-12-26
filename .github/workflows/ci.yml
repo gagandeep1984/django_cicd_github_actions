@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v2 
     
       - name: Cache Dependency 
-        uses: action/cache@v2
+        uses: actions/cache@v2
         with: 
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
@@ -37,6 +37,6 @@ jobs:
 
       - name: Checking python version
         run: python --version
-        
+
       - name: Running Test
         run: python manage.py test
